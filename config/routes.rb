@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
+    resources :genres, except: [:new, :show, :destroy]
   end
+  
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers, skip: [:passwords], controllers: {
