@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'customers/index'
+    get 'customers/show'
+    get 'customers/edit'
+  end
+  namespace :admin do
     resources :genres, except: [:new, :show, :destroy]
     resources :items, except: [:destroy]
   end
