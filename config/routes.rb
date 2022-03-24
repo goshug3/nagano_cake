@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'homes/top'
+  end
   namespace :admin do
     root 'homes#top'
     resources :genres, except: [:new, :show, :destroy]
