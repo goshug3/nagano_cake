@@ -1,9 +1,38 @@
 Rails.application.routes.draw do
+  
+  root to: "public/homes#top"
+  
+  # 顧客
+  namespace :public do
+    
+    get "/about" => "homes#about", as: "about"
+    
+    resource :customers, only: [:show, :edit, :update] do
+      collection do
+        get "unsubscribe"
+        patch "withdraw"
+      end
+    end
+    
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    delete 'cart_items/destroy_all'
+    
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post "confirm"
+        get "complete"
+      end
+    end
+    
+    resources :shippings, only: [:index, :edit, :create, :update, :destroy]
+  end
+  
+  # 管理者
   namespace :admin do
     root 'homes#top'
-    resources :genres, except: [:new, :show, :destroy]
-    resources :items, except: [:destroy]
-    resources :customers, except: [:new, :create, :destroy]
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show]
   end
 
