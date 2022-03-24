@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     
     get "/about" => "homes#about", as: "about"
     
-    resource :customers, only: [:show, :edit, :update] do
+    resources :items, only: [:index, :show]
+    
+    resources :customers, only: [:show, :edit, :update] do
       collection do
         get "unsubscribe"
         patch "withdraw"
