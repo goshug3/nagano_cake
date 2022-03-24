@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'orders/new'
+    get 'orders/index'
+    get 'orders/show'
+  end
   root to: "public/homes#top"
   
   # 顧客
@@ -16,6 +21,13 @@ Rails.application.routes.draw do
     
     resources :cart_items, only: [:index, :create, :update, :destroy]
     delete 'cart_items/destroy_all'
+    
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post "confirm"
+        get "complete"
+      end
+    end
     
     
   end
