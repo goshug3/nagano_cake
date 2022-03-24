@@ -3,11 +3,13 @@ Rails.application.routes.draw do
   root to: "public/homes#top"
   
   # 顧客
-  namespace :public do
+  scope module: :public do
     
     get "/about" => "homes#about", as: "about"
     
-    resource :customers, only: [:show, :edit, :update] do
+    resources :items, only: [:index, :show]
+    
+    resources :customers, only: [:show, :edit, :update] do
       collection do
         get "unsubscribe"
         patch "withdraw"
