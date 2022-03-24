@@ -1,11 +1,23 @@
 Rails.application.routes.draw do
+  
+  root to: "public/homes#top"
+  
+  # 顧客
   namespace :public do
-    get 'items/index'
-    get 'items/show'
+    
+    get "/about" => "homes#about", as: "about"
+    
+    resource :customers, only: [:show, :edit, :update] do
+      collection do
+        get "unsubscribe"
+        patch "withdraw"
+      end
+    end
+    
+    
   end
-  namespace :public do
-    get 'homes/top'
-  end
+  
+  # 管理者
   namespace :admin do
     root 'homes#top'
     resources :genres, except: [:new, :show, :destroy]
