@@ -14,15 +14,18 @@ Rails.application.routes.draw do
       end
     end
     
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    delete 'cart_items/destroy_all'
+    
     
   end
   
   # 管理者
   namespace :admin do
     root 'homes#top'
-    resources :genres, except: [:new, :show, :destroy]
-    resources :items, except: [:destroy]
-    resources :customers, except: [:new, :create, :destroy]
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show]
   end
 
