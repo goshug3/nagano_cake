@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     
     resources :items, only: [:index, :show]
     
-    resources :customers, only: [:show, :edit, :update] do
+    resources :customer, only: [:show, :edit, :update] do
       collection do
         get "unsubscribe"
         patch "withdraw"
