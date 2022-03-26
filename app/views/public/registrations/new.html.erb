@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-lg-10 mx-auto">
       <table class="table table-borderless">
-        <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
         
         <tr class="field">
@@ -19,7 +19,7 @@
         </tr>
         
         <tr class="field">
-          <th><%= f.label :email %></th>
+          <th><%= f.label :メールアドレス %></th>
           <td><%= f.email_field :email %></td>
         </tr>
         
