@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>配送先登録/一覧画面</h1>
+  <div class="row">
+    <table>
+      <%= form_with model: @address, url:addresses_path, local: true do |f| %>
+      <tr>
+        <th><%= f.label :郵便番号（ハイフンなし）%></th>
+        <td><%= f.text_field :postal_code %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :住所 %></th>
+        <td><%= f.text_field :address %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :宛名 %></th>
+        <td><%= f.text_field :name %></td>
+        <td><%= f.submit '新規登録', class: "btn btn-success" %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  
+</div>
