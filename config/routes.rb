@@ -9,24 +9,18 @@ Rails.application.routes.draw do
     
     resources :items, only: [:index, :show]
     
-    resources :customers, only: [:show, :edit, :update] do
-      collection do
-        get "unsubscribe"
-        patch "withdraw"
-      end
-    end
+    resources :customers, only: [:show, :edit, :update]
+    get '/customers/unsubscribe' => "customers#unsubscribe", as: "unsubscribe"
+    patch '/customers/withdraw' => "customers#withdraw", as: "withdraw"
     
     resources :cart_items, only: [:index, :create, :update, :destroy]
     delete 'cart_items/destroy_all'
     
-    resources :orders, only: [:new, :create, :index, :show] do
-      collection do
-        post "confirm"
-        get "complete"
-      end
-    end
+    resources :orders, only: [:new, :create, :index, :show]
+    get '/orders/complete' => "orders#complete", as: "complete"
+    post '/orders/confirm' => "orders#confirm", as: "confirm"
     
-    resources :shippings, only: [:index, :edit, :create, :update, :destroy]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
   
   # 管理者
