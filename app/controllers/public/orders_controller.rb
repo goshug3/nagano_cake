@@ -45,10 +45,15 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_detail = @order.order_details.all
+    @order.shipping_cost = "800"
+    @total_price = @order_detail.inject(0) { |sum, item| sum + item.subtotal }
+    @total_payment = @order.shipping_cost + @total_price
   end
   
   private
   def order_params
-      params.require(:order).permit(:postal_code, :address, :name, :payment_method, :total_payment, :order_status)
+      params.require(:order).permit(:postal_code, :address, :name, :payment_method, :total_payment)
   end
 end

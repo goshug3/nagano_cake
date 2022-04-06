@@ -1,2 +1,62 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+  <h4>注文履歴詳細</h4>
+  <div class="row">
+      <div class="col-lg-6">
+        <strong>注文情報</strong>
+        <table class="table table-bordered">
+          <tr>
+            <th class="table-active">注文日</th>
+            <td><%= @order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          </tr>
+          <tr>
+            <th class="table-active">配送先</th>
+            <td><%= @order.address %></td>
+          </tr>
+          <tr>
+            <th class="table-active">支払方法</th>
+            <td><%= @order.payment_method_i18n %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-lg-3">
+        <strong>請求情報</strong>
+        <table class="table table-bordered">
+          <tr>
+            <th class="table-active">商品合計</th>
+            <td><%= @total_price.round.to_s(:delimited)%></td>
+          </tr>
+          <tr>
+            <th class="table-active">配送料</th>
+            <td><%= @order.shipping_cost.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th class="table-active">ご請求額</th>
+            <td><%= @total_payment.round.to_s(:delimited) %></td>
+          </tr>
+        </table>
+      </div>
+  </div>
+  <div class="row">
+    <strong>注文内容</strong>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-active">
+          <th>商品</th>
+          <th>単価（税込）</th>
+          <th>個数</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_detail.each do |order_detail| %>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.item.with_tax_price %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= order_detail.subtotal %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
