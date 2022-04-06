@@ -27,7 +27,7 @@
               <tr>
                 <td>
                   <%= link_to item_path(item.id) do %>
-                    <%= image_tag item.image, size: "100x100" %>
+                    <%= image_tag item.get_image(100, 100) %>
                   <% end %>
                 </td>
               </tr>
