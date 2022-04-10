@@ -2,15 +2,57 @@
 <html>
   <head>
     <title>NaganoCake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm mb-5">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand" href="/"><%= image_tag 'logo.png', size: '180x100' %></a>
+          <% if admin_signed_in? %>
+            <ul class="nav justify-content-end">
+              <li class="nav-item btn btn-outline-light"><%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn btn-outline-light"><%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn btn-outline-light"><%= link_to "注文履歴一覧", admin_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn btn-outline-light"><%= link_to "ジャンル一覧", admin_genres_path,data: {"turbolinks"=>false}, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn btn-outline-light"><%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+            </ul>
+          <% elsif customer_signed_in? %>
+            <div class="mx-auto" style="width: 200px;">
+              ようこそ、<%= current_customer.last_name %>さん！
+            </div>
+            <ul class="nav justify-content-end">
+              <li class="nav-item btn btn-outline-light"><%= link_to "マイページ", public_customer_path(current_customer.id), class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn btn-outline-light"><%= link_to "商品一覧", public_items_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn btn-outline-light"><%= link_to "カート", public_cart_items_path(current_customer.id),data: {"turbolinks"=>false}, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn btn-outline-light"><%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+            </ul>
+          <% else %>
+            <ul class="nav justify-content-end">
+              <li class="nav-item btn btn-outline-light"><%= link_to "About", public_about_path, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn btn-outline-light"><%= link_to "商品一覧", public_items_path,data: {"turbolinks"=>false}, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn btn-outline-light"><%= link_to "新規登録", new_customer_registration_path,data: {"turbolinks"=>false}, class: 'nav-link text-dark' %></li>
+              <li class="nav-item btn btn-outline-light"><%= link_to "ログイン", new_customer_session_path,data: {"turbolinks"=>false}, class: 'nav-link text-dark' %></li>
+            </ul>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+    <main>
     <%= yield %>
+    </main>
+    <footer>
+      <div>
+          
+          
+      </div>
+    </footer>
   </body>
 </html>

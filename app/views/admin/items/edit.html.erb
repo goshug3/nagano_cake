@@ -1,0 +1,45 @@
+<div class="container">
+  <h3 class="col-3 mt-3 text-center bg-light text-dark">商品編集</h3>
+  <div class="row mt-5">
+    <div class="col-lg-6 mx-auto">
+      <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch, local: true do |f| %>
+      <div class="row mb-3">
+        <label class="col-lg-3 col-form-label">商品画像</label>
+        <div class="col-lg-8">
+          <%= f.file_field :image, class: "form-control-file image" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-lg-3 col-form-label">商品名</label>
+        <div class="col-lg-8">
+          <%= f.text_field :name, class: "form-control name" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-lg-3 col-form-label">商品説明</label>
+        <div class="col-lg-8">
+          <%= f.text_area :introduction, class: "form-control introduction", rows: "10" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-lg-3 col-form-label">ジャンル</label>
+        <div class="col-lg-8">
+          <%= f.collection_select(:genre_id, Genre.all, :id, :name, include_blank: '--選択してください--', class: "custom-select") %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-lg-3 col-form-label">税抜価格</label>
+        <div class="col-lg-8">
+          <%= f.text_field :price, class: "form-control price" %>
+        </div>
+        <span class="col-lg-1 px-0 pt-2 text-left">円</span>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 mx-auto">
+          <%= f.submit "　変更を保存　", class: "btn btn-lg btn-success text-center" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

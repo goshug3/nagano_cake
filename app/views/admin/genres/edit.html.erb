@@ -1,0 +1,18 @@
+<div class="container">
+  <h4 class="col-3 mt-3 text-center bg-light text-dark">ジャンル編集</h4>
+  <div class="row">
+    <div class="col-lg-7 mt-5">
+      <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch, local: true do |f| %>
+      <div class="row">
+        <p class="col-lg-2 mx-auto">ジャンル名</p>
+        <div class="col-lg-5">
+          <%= f.text_field :name, class: "form-control name", placeholder: "ジャンル名" %>
+        </div>
+        <div class="col-lg-5 mx-auto">
+          <%= f.submit "  変更を保存  ", class: "btn btn-success" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
