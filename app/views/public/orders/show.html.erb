@@ -1,12 +1,12 @@
 <div class="container">
-  <h4>注文履歴詳細</h4>
+  <h3 class="col-3 mt-3 text-center bg-light text-dark">注文履歴詳細</h3>
   <div class="row">
       <div class="col-lg-6">
         <strong>注文情報</strong>
         <table class="table table-bordered">
           <tr>
             <th class="table-active">注文日</th>
-            <td><%= @order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
             <th class="table-active">配送先</th>
@@ -51,9 +51,9 @@
         <% @order_detail.each do |order_detail| %>
           <tr>
             <td><%= order_detail.item.name %></td>
-            <td><%= order_detail.item.with_tax_price %></td>
+            <td><%= order_detail.item.with_tax_price.to_s(:delimited) %></td>
             <td><%= order_detail.amount %></td>
-            <td><%= order_detail.subtotal %></td>
+            <td><%= order_detail.subtotal.to_s(:delimited) %></td>
           </tr>
         <% end %>
       </tbody>
