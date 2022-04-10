@@ -3,22 +3,23 @@ Rails.application.routes.draw do
   root to: "public/homes#top"
   
   # 顧客
-  scope module: :public do
+  namespace :public do
     
     get "/about" => "homes#about", as: "about"
     
     resources :items, only: [:index, :show]
     
-    resources :customers, only: [:show, :edit, :update]
     get '/customers/unsubscribe' => "customers#unsubscribe", as: "unsubscribe"
     patch '/customers/withdraw' => "customers#withdraw", as: "withdraw"
+    resources :customers, only: [:show, :edit, :update]
     
-    resources :cart_items, only: [:index, :create, :update, :destroy]
     delete 'cart_items/destroy_all'
+    resources :cart_items, only: [:index, :create, :update, :destroy]
     
+    
+    get '/orders/complete'
+    post '/orders/confirm'
     resources :orders, only: [:new, :create, :index, :show]
-    get '/orders/complete' => "orders#complete", as: "complete"
-    post '/orders/confirm' => "orders#confirm", as: "confirm"
     
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end

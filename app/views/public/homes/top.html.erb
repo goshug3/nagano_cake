@@ -1,45 +1,46 @@
 <div class="container">
+  <div class="text-center shop-introduction">
+    <p>
+      ようこそ、ながのCAKEへ！<br>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要になります。<br>
+    </p>
+  </div>
   <div class="row">
-    <div class="col-md-3">
-      <table class="table table-bordered">
-        <thead>
-          <th>ジャンル検索</th>
-        </thead>
-        <tbody class="table table-borderless">
-          <% @genres.each do |genre| %>
-          <tr>
-            <td>
-              <%= genre.name %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
+    <div class="col-md-8">
+      <h2 class="mr-4 title">新着商品</h2>
+    </div>
+      <table class="table table-borderless">
+        <% @items.each do |item| %>
+        <tr>
+          <td>
+            <%= link_to public_item_path(item.id),data: {"turbolinks"=>false} do %>
+              <%= image_tag item.image, size: "100x100" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= item.name %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            ￥<%= item.price.round.to_s(:delimited) %>
+          </td>
+        </tr>
+        <% end %>
       </table>
     </div>
-    <div class="col-md-8">
-      <div class="text-center m-5">
-        <span>
-          ようこそ、ながのCAKEへ！<br>
-          このサイトは、ケーキ販売のECサイトになります。<br>
-          会員でない方も商品の閲覧はできますが、<br>
-          購入には会員登録が必要になります。<br>
-        </span>
-      </div>
+    <div class="row">
+      <table class="table table-borderless">
+        <tr>
+          <td class="text-right">
+            <%= link_to 'すべての商品を見る>', public_items_path,data: {"turbolinks"=>false} %>
+          </td>
+        </tr>
+      </table>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8">
-      <h5>新着商品</h5>
-    </div>
-    <% @items.each do |item| %>
-    <%= image_tag item.get_image(150, 100) %>
-    <%= item.name %>
-    ¥<%= item.add_tax_price.to_s(:delimited) %>
-    <% end %>
-  </div>
-  <div class="row">
-    
-  </div>
-    
-    
-</div>
+  </div>  
+</div>      
