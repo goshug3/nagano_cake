@@ -1,5 +1,5 @@
 <div class="container">
-  <h4>注文履歴一覧</h4>
+  <h3 class="col-3 mt-3 text-center bg-light text-dark">注文履歴一覧</h3>
   <div class="row">
     <table class="table table-bordered">
       <thead>
@@ -21,7 +21,7 @@
                 <%= order_detail.item.name %><br>
               <% end %>
             </td>
-            <td><%= order.total_payment.to_i %>円</td>
+            <td><%= order.total_payment.to_s(:delimited) %>円</td>
             <td><%= link_to '表示する', public_order_path(order.id), class: "btn btn-primary" %></td>
           </tr>
         <% end %>

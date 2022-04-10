@@ -1,22 +1,45 @@
-<h1>商品新規登録</h1>
-
-<%= form_with model: @item, url: admin_items_path, local: true do |f| %>
-
-<h4>商品画像</h4>
-<%= f.file_field :image, accept: "image/*" %>
-
-<h4>商品名</h4>
-<%= f.text_field :name %>
-
-<h4>商品説明</h4>
-<%= f.text_area :introduction %>
-
-<h4>ジャンル</h4>
-<%= f.collection_select :genre_id, @genre, :id, :name, include_blank: "~選択してください~" %>
-
-<h4>税抜価格</h4>
-<%= f.text_field :price %>
-
-<%= f.submit "新規登録" %>
-
-<% end %>
+<div class="container">
+  <h3 class="col-3 mt-3 text-center bg-light text-dark">商品新規登録</h3>
+  <div class="row mt-5">
+    <div class="col-lg-6 mx-auto">
+      <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
+      <div class="row mb-3">
+        <label class="col-lg-3 col-form-label">商品画像</label>
+        <div class="col-lg-8">
+          <%= f.file_field :image, class: "form-control-file image" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-lg-3 col-form-label">商品名</label>
+        <div class="col-lg-8">
+          <%= f.text_field :name, placeholder: "商品名", class: "form-control name" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-lg-3 col-form-label">商品説明</label>
+        <div class="col-lg-8">
+          <%= f.text_area :introduction, placeholder: "ここに説明文を記述します", class: "form-control introduction", rows: "10" %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-lg-3 col-form-label">ジャンル</label>
+        <div class="col-lg-8">
+          <%= f.collection_select(:genre_id, Genre.all, :id, :name, include_blank: '--選択してください--', class: "custom-select") %>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-lg-3 col-form-label">税抜価格</label>
+        <div class="col-lg-8">
+          <%= f.text_field :price, placeholder: "1000", class: "form-control price" %>
+        </div>
+        <span class="col-lg-1 px-0 pt-2 text-left">円</span>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 mx-auto">
+          <%= f.submit "　新規登録　", class: "btn btn-lg btn-success text-center" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

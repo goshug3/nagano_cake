@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="px-3 text-left mt-3">新規会員登録</h2>
+  <h3 class="col-3 mt-3 text-center bg-light text-dark">新規会員登録</h3>
   <div class="row mt-5">
     <div class="col-lg-10 mr-auto">
       <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
@@ -7,11 +7,11 @@
         <label class="col-lg-2 col-form-label" style="font-weight: bold;">名前</label>
         <label class="col-lg-1 col-form-label text-right pr-0" style="font-size: 12px; font-weight: bold;">（姓）</label>
         <div class="col-lg-3">
-          <%= f.text_field :last_name, class: "form-control last_name" %>
+          <%= f.text_field :last_name, placeholder: "令和", class: "form-control last_name" %>
         </div>
         <label class="col-lg-1 col-form-label text-right pr-0" style="font-size: 12px; font-weight: bold;">（名）</label>
         <div class="col-lg-3">
-          <%= f.text_field :first_name, class: "form-control first_name" %>
+          <%= f.text_field :first_name, placeholder: "道子", class: "form-control first_name" %>
         </div>
       </div>
 
@@ -19,39 +19,39 @@
         <label class="col-lg-2 col-form-label" style="font-weight: bold;">フリガナ</label>
         <label class="col-lg-1 col-form-label text-right pr-0" style="font-size: 12px; font-weight: bold;">（セイ）</label>
         <div class="col-lg-3">
-          <%= f.text_field :last_name_kana, class: "form-control last_name_kana" %>
+          <%= f.text_field :last_name_kana, placeholder: "レイワ", class: "form-control last_name_kana" %>
         </div>
         <label class="col-lg-1 col-form-label text-right pr-0" style="font-size: 12px; font-weight: bold;">（メイ）</label>
         <div class="col-lg-3">
-          <%= f.text_field :first_name_kana, class: "form-control first_name_kana" %>
+          <%= f.text_field :first_name_kana, placeholder: "ミチコ", class: "form-control first_name_kana" %>
         </div>
       </div>
 
       <div class="row mb-2">
         <label class="col-lg-3 col-form-label" style="font-weight: bold;">メールアドレス</label>
         <div class="col-lg-7">
-          <%= f.email_field :email, class: "form-control email" %>
+          <%= f.email_field :email, placeholder: "sample@example.com", class: "form-control email" %>
         </div>
       </div>
 
       <div class="row mb-2">
         <label class="col-lg-3 col-form-label" style="font-weight: bold;">郵便番号(ハイフンなし)</label>
         <div class="col-lg-4">
-          <%= f.text_field :postal_code, class: "form-control postal_code" %>
+          <%= f.text_field :postal_code, placeholder: "0000000", class: "form-control postal_code" %>
         </div>
       </div>
 
       <div class="row mb-2">
         <label class="col-lg-3 col-form-label" style="font-weight: bold;">住所</label>
         <div class="col-lg-7">
-          <%= f.text_field :address, class: "form-control address" %>
+          <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control address" %>
         </div>
       </div>
 
       <div class="row mb-2">
         <label class="col-lg-3 col-form-label" style="font-weight: bold;">電話番号(ハイフンなし)</label>
         <div class="col-lg-4">
-          <%= f.text_field :telephone_number, class: "form-control telephone_number" %>
+          <%= f.text_field :telephone_number, placeholder: "00000000000", class: "form-control telephone_number" %>
         </div>
       </div>
 
@@ -78,8 +78,6 @@
       <% end %>
     </div>
   </div>
-  <h4 class="px-3 text-left mt-3">既に登録済みの方</h2>
-  <div class="px-5">
+  <h4 class="col-3 mt-3 text-center bg-light text-dark">既に登録済みの方</h2>
     <%= link_to "こちら", new_customer_session_path %> <span>からログインしてください。</span>
-  </div>
 </div>
