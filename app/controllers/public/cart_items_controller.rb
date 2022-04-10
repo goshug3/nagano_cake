@@ -1,7 +1,7 @@
 class Public::CartItemsController < ApplicationController
   
   def index
-    @cart_items = current_customer.cart_items.all
+    @cart_items = current_customer.cart_items.all.order(created_at: :desc)
     @total_price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
   end
   

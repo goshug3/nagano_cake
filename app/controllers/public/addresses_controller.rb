@@ -1,7 +1,7 @@
 class Public::AddressesController < ApplicationController
   def index
     @address = current_customer.addresses.new
-    @addresses = current_customer.addresses.all
+    @addresses = current_customer.addresses.all.order(created_at: :desc)
   end
   
   def create
